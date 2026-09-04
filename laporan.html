@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kanal Edukasi Delik Tindak Pidana Korupsi dan Formulir Pengaduan Whistleblowing System (WBS) KPK RI Terenkripsi.">
+  <title>Edukasi & Pengaduan WBS Terenkripsi | Portal Transparansi KPK</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="stylesheet" href="style.css">
+  <!-- GSAP 3 CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- Ambient Canvas Background -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Live Financial Ticker Bar -->
+  <aside class="ticker-bar-wrap" aria-label="WBS Ticker">
+    <div class="ticker-content">
+      <span class="ticker-item">🔴 <strong>WHISTLEBLOWING SYSTEM SENTINEL</strong></span>
+      <span class="ticker-item">STATUS KANAL: <strong>ONLINE // TERENKRIPSI</strong> <span class="ticker-cyan">TLS 1.3</span></span>
+      <span class="ticker-item">PERLINDUNGAN SAKSI: <strong>DIJAMIN UU LPSK NO. 31/2014</strong></span>
+      <span class="ticker-item">KERAHASIAAN IDENTITAS: <strong>100% ANONIM</strong></span>
+      <span class="ticker-item">CALL CENTER GRATIS: <strong>198</strong></span>
+      <span class="ticker-item">WHATSAPP RESMI KPK: <strong>0811-959-575</strong></span>
+      <!-- Loop duplicate for continuous scroll -->
+      <span class="ticker-item">🔴 <strong>WHISTLEBLOWING SYSTEM SENTINEL</strong></span>
+      <span class="ticker-item">STATUS KANAL: <strong>ONLINE // TERENKRIPSI</strong> <span class="ticker-cyan">TLS 1.3</span></span>
+      <span class="ticker-item">PERLINDUNGAN SAKSI: <strong>DIJAMIN UU LPSK NO. 31/2014</strong></span>
+      <span class="ticker-item">KERAHASIAAN IDENTITAS: <strong>100% ANONIM</strong></span>
+      <span class="ticker-item">CALL CENTER GRATIS: <strong>198</strong></span>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-emblem">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4zm0 4a3 3 0 013 3c0 1.31-.83 2.42-2 2.83V16a1 1 0 01-2 0v-4.17c-1.17-.41-2-1.52-2-2.83a3 3 0 013-3z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">PORTAL TRANSPARANSI <span>KPK</span></div>
+          <div class="brand-sub">EDUKASI & WHISTLEBLOWER HUB</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">Beranda</a></li>
+          <li><a href="analisis.html" class="nav-link">Live Analytics</a></li>
+          <li><a href="galeri.html" class="nav-link">Galeri Pelaku</a></li>
+          <li><a href="laporan.html" class="nav-link active">Edukasi & WBS</a></li>
+        </ul>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: 0.65rem;">
+        <a href="analisis.html" class="nav-link" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-cyan); border: 1px solid rgba(6,182,212,0.3); padding: 0.45rem 0.85rem; border-radius: 6px;">
+          Terminal Data &rarr;
+        </a>
+        <a href="tel:198" class="nav-cta">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+          </svg>
+          Call 198
+        </a>
+      </div>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 2rem;">
+
+    <!-- ==================== HEADER SECTION ==================== -->
+    <section class="page-header">
+      <span class="badge-tag">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 20 20">
+          <circle cx="10" cy="10" r="8"/>
+        </svg>
+        Literasi Hukum & Kanal Pengaduan WBS
+      </span>
+      <h1 class="page-title">Pusat Edukasi Tipikor & Whistleblowing System</h1>
+      <div class="red-divider"></div>
+      <p class="page-desc">
+        Pahami klasifikasi delik korupsi menurut undang-undang, kenali standar bukti yang dapat ditindaklanjuti, dan laporkan dugaan tindak pidana korupsi secara aman dengan proteksi enkripsi dan jaminan kerahasiaan identitas.
+      </p>
+    </section>
+
+    <!-- ==================== SECTION 1: 4 DELIK UTAMA TIPIKOR ==================== -->
+    <div style="margin-bottom: 2rem;">
+      <span class="badge-tag red">Modus Operandi & Dasar Hukum</span>
+      <h2 style="font-size: 2rem; font-weight: 800; color: #ffffff; margin-top: 0.35rem;">
+        4 Klasifikasi Delik Korupsi Paling Sering Terjadi
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 800px; margin-top: 0.5rem;">
+        Merujuk pada Undang-Undang No. 31 Tahun 1999 jo. UU No. 20 Tahun 2001 tentang Pemberantasan Tindak Pidana Korupsi.
+      </p>
+    </div>
+
+    <section class="delik-grid">
+      <!-- Delik 1: Suap & Gratifikasi -->
+      <article class="delik-card">
+        <div class="delik-icon-box">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14.93V19h-2v-2.07c-1.72-.39-3-1.87-3-3.93h2c0 1.1 1 2 2 2s2-.9 2-2c0-.73-.41-1.38-1-1.72l-2.42-1.2C9.28 9.4 8.5 8.28 8.5 7c0-2.06 1.28-3.54 3.5-3.93V1h2v2.07c1.72.39 3 1.87 3 3.93h-2c0-1.1-1-2-2-2s-2 .9-2 2c0 .73.41 1.38 1 1.72l2.42 1.2c1.3.68 2.08 1.8 2.08 3.08 0 2.06-1.28 3.54-3.5 3.93z"/>
+          </svg>
+        </div>
+        <h3 class="delik-title">Suap Menyuap & Gratifikasi</h3>
+        <span class="delik-pasal">Pasal 5 & 12B UU Tipikor</span>
+        <p class="delik-desc">
+          Pemberian uang, fasilitas mewah, komisi, tiket perjalanan, atau barang berharga kepada pegawai negeri/penyelenggara negara untuk meloloskan tender, izin usaha, atau vonis hukum.
+        </p>
+        <div class="delik-sanction">
+          ⚠️ Ancaman: Penjara seumur hidup atau 4-20 tahun, denda hingga Rp 1 Miliar.
+        </div>
+      </article>
+
+      <!-- Delik 2: Mark-Up Pengadaan Barang & Jasa -->
+      <article class="delik-card cyan">
+        <div class="delik-icon-box">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/>
+          </svg>
+        </div>
+        <h3 class="delik-title">Pengadaan Barang & Jasa (PBJ)</h3>
+        <span class="delik-pasal">Pasal 2 & 3 UU Tipikor</span>
+        <p class="delik-desc">
+          Rekayasa Harga Perkiraan Sendiri (HPS), lelang fiktif, pengaturan pemenang tender proyek infrastruktur, serta pencairan dana 100% untuk proyek yang mangkrak atau belum selesai.
+        </p>
+        <div class="delik-sanction" style="border-left-color: var(--color-cyan); color: #7dd3fc;">
+          ⚠️ Ancaman: Penjara seumur hidup atau 4-20 tahun, serta ganti rugi uang pengganti negara.
+        </div>
+      </article>
+
+      <!-- Delik 3: Pemerasan Jabatan -->
+      <article class="delik-card gold">
+        <div class="delik-icon-box">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+          </svg>
+        </div>
+        <h3 class="delik-title">Pemerasan dalam Jabatan</h3>
+        <span class="delik-pasal">Pasal 12 huruf e UU Tipikor</span>
+        <p class="delik-desc">
+          Penyelenggara negara yang dengan maksud menguntungkan diri sendiri secara melawan hukum menyalahgunakan kekuasaan memaksa seseorang membayar pungli atau memotong anggaran bawahan.
+        </p>
+        <div class="delik-sanction" style="border-left-color: var(--color-gold); color: #fde68a;">
+          ⚠️ Ancaman: Pidana penjara 4 hingga 20 tahun dan denda paling banyak Rp 1 Miliar.
+        </div>
+      </article>
+
+      <!-- Delik 4: Pencucian Uang (TPPU) -->
+      <article class="delik-card emerald">
+        <div class="delik-icon-box">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+        </div>
+        <h3 class="delik-title">Pencucian Uang (TPPU)</h3>
+        <span class="delik-pasal">UU No. 8 Tahun 2010</span>
+        <p class="delik-desc">
+          Menempatkan, mentransfer, membelanjakan, atau menyamarkan harta kekayaan yang diketahuinya merupakan hasil tindak pidana korupsi ke instrumen aset properti, perhiasan, valas, atau saham.
+        </p>
+        <div class="delik-sanction" style="border-left-color: var(--color-emerald); color: #a7f3d0;">
+          ⚠️ Ancaman: Penjara maksimal 20 tahun dan penyitaan seluruh aset rampasan negara.
+        </div>
+      </article>
+    </section>
+
+    <!-- ==================== SECTION 2: STANDAR 4W + 1H & BUKTI VALID ==================== -->
+    <div class="terminal-panel" style="margin-bottom: 3.5rem;">
+      <div class="terminal-header">
+        <div class="terminal-symbol-meta">
+          <span class="symbol-badge">PEDOMAN KPK</span>
+          <div>
+            <div class="terminal-title">Standar Kualitas Laporan 4W + 1H</div>
+            <div class="terminal-subtitle">Agar laporan dapat diverifikasi cepat & masuk tahap telaah penyelidikan</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size: 0.95rem; color: #94a3b8; line-height: 1.7; margin-bottom: 2rem;">
+        Komisi Pemberantasan Korupsi (KPK) hanya dapat menindaklanjuti laporan masyarakat yang memuat substansi faktual, bukan fitnah, dan didukung bukti awal yang memadai. Gunakan kerangka 4W + 1H:
+      </p>
+
+      <div class="checklist-grid">
+        <div class="checklist-card">
+          <div class="check-icon">W</div>
+          <div>
+            <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem; margin-bottom: 0.3rem;">WHAT (Peristiwa)</div>
+            <div style="font-size: 0.84rem; color: #94a3b8;">Uraikan perbuatan melawan hukum yang terjadi (misal: penunjukan langsung sepihak tender jalan tol senilai Rp 200 Miliar).</div>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="check-icon">W</div>
+          <div>
+            <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem; margin-bottom: 0.3rem;">WHO (Pihak Terlapor)</div>
+            <div style="font-size: 0.84rem; color: #94a3b8;">Sebutkan nama lengkap, jabatan, instansi kedinasan, dan pihak vendor swasta yang terlibat secara spesifik.</div>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="check-icon">W</div>
+          <div>
+            <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem; margin-bottom: 0.3rem;">WHERE & WHEN (Lokasi & Waktu)</div>
+            <div style="font-size: 0.84rem; color: #94a3b8;">Lokasi satuan kerja/satker dinas dan rentang tanggal penandatanganan kontrak atau serah terima uang suap.</div>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="check-icon">H</div>
+          <div>
+            <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem; margin-bottom: 0.3rem;">HOW (Modus & Bukti)</div>
+            <div style="font-size: 0.84rem; color: #94a3b8;">Cara pembagian fee kickback, rekening perantara, atau bukti dokumen kontrak lelang yang dimanipulasi.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hak Pelapor & Jaminan LPSK -->
+      <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(16,185,129,0.2); display: flex; align-items: center; justify-content: center; color: var(--color-emerald); flex-shrink: 0;">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div style="flex: 1; min-width: 250px;">
+          <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem; margin-bottom: 0.2rem;">Hak Perlindungan Penuh Saksi & Pelapor (Whistleblower)</div>
+          <div style="font-size: 0.85rem; color: #cbd5e1;">Berdasarkan UU No. 31 Tahun 2014, pelapor beritikad baik tidak dapat dituntut pidana/perdata dan berhak memperoleh perlindungan fisik, hukum, serta kerahasiaan identitas dari LPSK dan KPK.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SECTION 3: FORMULIR PENGADUAN WBS ==================== -->
+    <section class="wbs-form-card" id="form-section">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="badge-tag" style="margin-bottom: 0.75rem;">Whistleblowing System Terenkripsi</span>
+        <h2 style="font-size: 2.25rem; font-weight: 800; color: #ffffff; letter-spacing: -0.01em;">
+          Formulir Pengaduan Masyarakat
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 650px; margin: 0.5rem auto 0;">
+          Kirimkan laporan secara aman. Sistem kami menerapkan enkripsi sisi klien dan token referensi unik untuk memantau perkembangan kasus Anda.
+        </p>
+      </div>
+
+      <!-- Mode Anonim Switch Bar -->
+      <div class="anon-mode-card">
+        <div class="anon-mode-meta">
+          <div class="anon-icon" id="anon-icon">
+            <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 5a3 3 0 016 0v3H9V7zm3 7a2 2 0 110 4 2 2 0 010-4z"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-weight: 700; color: #ffffff; font-size: 0.92rem;">Mode Pengaduan: <span id="anon-mode-text" style="color: var(--color-emerald);">Anonim 100% (Identitas Rahasia)</span></div>
+            <div style="font-size: 0.78rem; color: #94a3b8;" id="anon-mode-sub">Nama & identitas Anda tidak disimpan dalam database. Anda hanya menerima kode tiket.</div>
+          </div>
+        </div>
+
+        <div class="toggle-switch-container">
+          <label class="switch-label" for="anon-toggle">Lapor Anonim</label>
+          <label class="switch-cyber">
+            <input type="checkbox" id="anon-toggle" checked>
+            <span class="slider-cyber"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Main Form -->
+      <form id="wbs-report-form">
+        <!-- Pelapor Identity Fields (Hidden if Anon) -->
+        <div id="identity-fields-wrap" style="display: none; transition: all 0.3s;">
+          <div class="form-grid-2col">
+            <div class="form-group-cyber">
+              <label class="form-label-cyber" for="nama-pelapor">
+                Nama Lengkap Pelapor <span class="required">*</span>
+              </label>
+              <input type="text" id="nama-pelapor" class="form-input-cyber" placeholder="Masukkan nama sesuai KTP">
+            </div>
+            <div class="form-group-cyber">
+              <label class="form-label-cyber" for="email-pelapor">
+                Email / No. WhatsApp Rahasia <span class="required">*</span>
+              </label>
+              <input type="text" id="email-pelapor" class="form-input-cyber" placeholder="Untuk menerima update penyelidikan">
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Metadata Fields -->
+        <div class="form-grid-2col">
+          <div class="form-group-cyber">
+            <label class="form-label-cyber" for="judul-kasus">
+              Judul Indikasi Dugaan Tipikor <span class="required">*</span>
+            </label>
+            <input type="text" id="judul-kasus" class="form-input-cyber" placeholder="Contoh: Dugaan Mark-up Pengadaan Alat RSUD" required>
+          </div>
+
+          <div class="form-group-cyber">
+            <label class="form-label-cyber" for="kategori-kasus">
+              Klasifikasi Dugaan Pelanggaran <span class="required">*</span>
+            </label>
+            <select id="kategori-kasus" class="form-input-cyber" required>
+              <option value="">-- Pilih Klasifikasi Tipikor --</option>
+              <option value="Suap Menyuap">Suap Menyuap / Pemerasan Jabatan</option>
+              <option value="Pengadaan Barang dan Jasa">Pengadaan Barang dan Jasa (Mark-up)</option>
+              <option value="Gratifikasi">Penerimaan Gratifikasi Terlarang</option>
+              <option value="Penyalahgunaan Anggaran">Penyalahgunaan Anggaran APBN / APBD</option>
+              <option value="Pencucian Uang (TPPU)">Tindak Pidana Pencucian Uang (TPPU)</option>
+              <option value="Konflik Kepentingan">Benturan Kepentingan dalam Pengadaan</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2col">
+          <div class="form-group-cyber">
+            <label class="form-label-cyber" for="instansi-terlapor">
+              Instansi / Lembaga Terlapor <span class="required">*</span>
+            </label>
+            <select id="instansi-terlapor" class="form-input-cyber" required>
+              <option value="">-- Pilih Sektor Instansi --</option>
+              <option value="Kementerian / Lembaga Negara">Kementerian / Lembaga Negara</option>
+              <option value="BUMN / BUMD">BUMN / BUMD</option>
+              <option value="Pemerintah Provinsi">Pemerintah Provinsi</option>
+              <option value="Pemerintah Kabupaten / Kota">Pemerintah Kabupaten / Kota</option>
+              <option value="Lembaga Yudikatif / Penegak Hukum">Lembaga Penegak Hukum</option>
+              <option value="Sektor Swasta / Korporasi">Sektor Swasta / Korporasi</option>
+            </select>
+          </div>
+
+          <div class="form-group-cyber">
+            <label class="form-label-cyber" for="estimasi-kerugian">
+              Estimasi Nominal Kerugian / Suap (Opsional)
+              <span class="hint">Angka Rupiah</span>
+            </label>
+            <input type="number" id="estimasi-kerugian" class="form-input-cyber" placeholder="Contoh: 5000000000 (Rp 5 Miliar)">
+          </div>
+        </div>
+
+        <div class="form-group-cyber">
+          <label class="form-label-cyber" for="pihak-terlibat">
+            Nama Pihak / Pejabat yang Diduga Terlibat <span class="required">*</span>
+            <span class="hint">Sebutkan nama dan jabatan bila mengetahui</span>
+          </label>
+          <input type="text" id="pihak-terlibat" class="form-input-cyber" placeholder="Contoh: Kepala Satker Dinas PU, Pejabat Pembuat Komitmen (PPK), Direktur PT XYZ" required>
+        </div>
+
+        <div class="form-group-cyber">
+          <label class="form-label-cyber" for="uraian-kasus">
+            Uraian Kronologis Kejadian (4W + 1H) <span class="required">*</span>
+            <span class="hint">Ceritakan modus, tanggal kejadian, dan lokasi</span>
+          </label>
+          <textarea id="uraian-kasus" class="form-input-cyber" rows="5" placeholder="Jelaskan secara runtut kronologi peristiwa, bagaimana modus operandi dugaan korupsi dilakukan, serta pihak-pihak yang mengetahui langsung transaksi tersebut..." required></textarea>
+        </div>
+
+        <!-- Evidence Attachment Area -->
+        <div class="form-group-cyber">
+          <label class="form-label-cyber">
+            Lampiran Dokumen Bukti Pendukung (Opsional)
+            <span class="hint">PDF, JPG, PNG, DOCX, ZIP (Maks. 25 MB)</span>
+          </label>
+          <div class="file-drop-area" id="drop-area">
+            <input type="file" id="file-input" multiple accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx,.zip">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; pointer-events: none;">
+              <svg width="36" height="36" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-cyan);">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+              </svg>
+              <div style="font-weight: 700; color: #ffffff; font-size: 0.95rem;">Tarik & Lepas File ke Sini atau <span style="color: var(--color-cyan); text-decoration: underline;">Pilih File</span></div>
+              <div style="font-size: 0.8rem; color: #94a3b8;" id="file-chosen-text">File Anda dienkripsi otomatis secara lokal sebelum ditransmisikan.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="display: flex; justify-content: flex-end; align-items: center; gap: 1.25rem; margin-top: 2rem; flex-wrap: wrap;">
+          <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); display: flex; align-items: center; gap: 0.4rem;">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20" style="color: var(--color-emerald);">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Enkripsi TLS 1.3 / AES-256 Aktif
+          </div>
+          <button type="submit" class="nav-cta" style="border: none; cursor: pointer; font-size: 0.95rem; padding: 0.75rem 2rem;">
+            Kirim Laporan Terenkripsi &rarr;
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ==================== SECTION 4: KANAL PENGADUAN RESMI ==================== -->
+    <div style="margin-bottom: 2rem;">
+      <span class="badge-tag red">Akses Langsung Resmi</span>
+      <h2 style="font-size: 1.85rem; font-weight: 800; color: #ffffff; margin-top: 0.35rem;">
+        Kanal Komunikasi Langsung KPK RI
+      </h2>
+    </div>
+
+    <section class="checklist-grid" style="margin-bottom: 4rem;">
+      <div class="checklist-card" style="background: var(--bg-card); border-color: rgba(220,38,38,0.3);">
+        <div class="check-icon" style="background: rgba(220,38,38,0.2); color: var(--color-primary-red);">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+          </svg>
+        </div>
+        <div>
+          <div style="font-weight: 700; color: #ffffff; font-size: 1rem; margin-bottom: 0.2rem;">Call Center 198</div>
+          <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;">Layanan telepon bebas pulsa dari seluruh Indonesia (Hari Kerja: 08.00 - 17.00 WIB).</div>
+          <a href="tel:198" style="color: var(--color-cyan); font-family: var(--font-mono); font-size: 0.82rem; text-decoration: none; font-weight: 700;">Hubungi 198 &rarr;</a>
+        </div>
+      </div>
+
+      <div class="checklist-card" style="background: var(--bg-card); border-color: rgba(16,185,129,0.3);">
+        <div class="check-icon" style="background: rgba(16,185,129,0.2); color: var(--color-emerald);">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+          </svg>
+        </div>
+        <div>
+          <div style="font-weight: 700; color: #ffffff; font-size: 1rem; margin-bottom: 0.2rem;">WhatsApp Pengaduan</div>
+          <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;">Kanal chat resmi pengaduan publik: 0811-959-575 untuk kirim dokumen cepat.</div>
+          <a href="https://wa.me/62811959575" target="_blank" rel="noopener" style="color: var(--color-emerald); font-family: var(--font-mono); font-size: 0.82rem; text-decoration: none; font-weight: 700;">Kirim Chat WhatsApp &rarr;</a>
+        </div>
+      </div>
+
+      <div class="checklist-card" style="background: var(--bg-card); border-color: rgba(6,182,212,0.3);">
+        <div class="check-icon" style="background: rgba(6,182,212,0.2); color: var(--color-cyan);">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-weight: 700; color: #ffffff; font-size: 1rem; margin-bottom: 0.2rem;">Gedung Merah Putih KPK</div>
+          <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.5rem;">Jl. Kuningan Persada Kav. 4, Setiabudi, Jakarta Selatan 12950 (Layanan Tatap Muka Direktorat PLPM).</div>
+          <a href="mailto:pengaduan@kpk.go.id" style="color: var(--color-cyan); font-family: var(--font-mono); font-size: 0.82rem; text-decoration: none; font-weight: 700;">Email: pengaduan@kpk.go.id &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== SUBMISSION CONFIRMATION MODAL ==================== -->
+  <div class="modal-overlay" id="submission-modal">
+    <div class="modal-content" style="max-width: 600px; border-color: var(--color-emerald);">
+      <div class="modal-header" style="background: #061815;">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--color-emerald); box-shadow: 0 0 10px var(--color-emerald);"></span>
+          <span style="font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700; color: #ffffff;">LAPORAN BERHASIL DIENKRIPSI</span>
+        </div>
+        <button class="modal-close" id="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="text-align: center; padding: 1rem 0;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(16,185,129,0.15); border: 2px solid var(--color-emerald); color: var(--color-emerald); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem;">
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem;">Laporan Terdaftar dalam Sistem WBS</h3>
+          <p style="font-size: 0.88rem; color: #94a3b8; max-width: 480px; margin: 0 auto 1.25rem; line-height: 1.6;">
+            Laporan Anda telah berhasil dienkripsi dan diamankan. Simpan kode referensi pelacakan di bawah ini untuk melihat status verifikasi.
+          </p>
+
+          <!-- Tracking Token Box -->
+          <div class="token-display-box">
+            <div>
+              <div style="font-size: 0.7rem; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Kode Tiket Laporan Anda</div>
+              <div class="token-code" id="generated-token">KPK-WBS-2026-X89B4</div>
+            </div>
+            <button class="btn-copy-token" id="copy-token-btn">Salin Kode</button>
+          </div>
+
+          <div style="background: rgba(11, 19, 36, 0.75); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 1rem; text-align: left; font-size: 0.84rem; color: #cbd5e1; margin-bottom: 1.5rem;">
+            <div style="font-weight: 700; color: #ffffff; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20" style="color: var(--color-cyan);">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+              </svg>
+              Langkah Selanjutnya:
+            </div>
+            <ul style="padding-left: 1.25rem; line-height: 1.7; color: #94a3b8;">
+              <li>Tim Direktorat Pelayanan Laporan dan Pengaduan Masyarakat (PLPM) KPK akan menelaah bukti dalam 3-7 hari kerja.</li>
+              <li>Bila Anda memilih mode non-anonim, penyidik akan menghubungi saluran kontak yang Anda cantumkan.</li>
+              <li>Anda juga dapat menyampaikan kode ini langsung melalui Call Center 198 atau WhatsApp KPK.</li>
+            </ul>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/62811959575" target="_blank" rel="noopener" class="nav-cta" style="background: #059669; border-color: #10b981; font-size: 0.85rem; text-decoration: none;">
+              Lanjut via WhatsApp KPK
+            </a>
+            <button class="nav-cta" id="close-modal-done" style="background: rgba(15,23,42,0.8); border-color: rgba(255,255,255,0.2); font-size: 0.85rem; cursor: pointer;">
+              Selesai & Tutup
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="portal-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <div class="footer-brand-title">Portal Transparansi Data Korupsi</div>
+          <p class="footer-desc">
+            Media intelijen data dan literasi publik independen untuk memantau kerugian keuangan negara akibat korupsi di Indonesia. Berbasis data resmi putusan inkracht Mahkamah Agung RI.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigasi Halaman</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Beranda Landing Page</a></li>
+            <li><a href="analisis.html">Trading Terminal Analisis</a></li>
+            <li><a href="galeri.html">Katalog Pelaku Korupsi</a></li>
+            <li><a href="laporan.html">Edukasi & Pengaduan WBS</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Kanal Pengaduan Resmi</div>
+          <ul class="footer-links-list">
+            <li><a href="tel:198">Call Center: 198</a></li>
+            <li><a href="mailto:pengaduan@kpk.go.id">pengaduan@kpk.go.id</a></li>
+            <li><a href="https://kpk.go.id" target="_blank" rel="noopener">Website Resmi KPK RI</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 Portal Transparansi Data Korupsi Indonesia. Lisensi Publik Terbuka.</div>
+        <div style="font-family: var(--font-mono); color: var(--color-cyan);">CYBER SENTINEL v4.2 // 60 FPS GSAP</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="main.js"></script>
+  <script>
+    // WBS Form Controller
+    document.addEventListener('DOMContentLoaded', () => {
+      const anonToggle = document.getElementById('anon-toggle');
+      const identityWrap = document.getElementById('identity-fields-wrap');
+      const anonModeText = document.getElementById('anon-mode-text');
+      const anonModeSub = document.getElementById('anon-mode-sub');
+      const anonIcon = document.getElementById('anon-icon');
+
+      const namaPelapor = document.getElementById('nama-pelapor');
+      const emailPelapor = document.getElementById('email-pelapor');
+
+      const fileInput = document.getElementById('file-input');
+      const fileChosenText = document.getElementById('file-chosen-text');
+      const dropArea = document.getElementById('drop-area');
+
+      const wbsForm = document.getElementById('wbs-report-form');
+      const modal = document.getElementById('submission-modal');
+      const modalClose = document.getElementById('modal-close-btn');
+      const modalCloseDone = document.getElementById('close-modal-done');
+      const tokenDisplay = document.getElementById('generated-token');
+      const copyTokenBtn = document.getElementById('copy-token-btn');
+
+      // Toggle anonymous mode
+      if (anonToggle) {
+        anonToggle.addEventListener('change', () => {
+          if (anonToggle.checked) {
+            identityWrap.style.display = 'none';
+            namaPelapor.removeAttribute('required');
+            emailPelapor.removeAttribute('required');
+            anonModeText.textContent = 'Anonim 100% (Identitas Rahasia)';
+            anonModeText.style.color = 'var(--color-emerald)';
+            anonModeSub.textContent = 'Nama & identitas Anda tidak disimpan dalam database. Anda hanya menerima kode tiket.';
+          } else {
+            identityWrap.style.display = 'block';
+            namaPelapor.setAttribute('required', 'true');
+            emailPelapor.setAttribute('required', 'true');
+            anonModeText.textContent = 'Terverifikasi (Identitas Terenkripsi)';
+            anonModeText.style.color = 'var(--color-cyan)';
+            anonModeSub.textContent = 'Identitas Anda dienkripsi berlapis untuk komunikasi tindak lanjut penyidik KPK.';
+          }
+        });
+      }
+
+      // File input listener
+      if (fileInput && fileChosenText) {
+        fileInput.addEventListener('change', () => {
+          if (fileInput.files.length > 0) {
+            fileChosenText.innerHTML = `<strong>${fileInput.files.length} file dipilih:</strong> ` + 
+              Array.from(fileInput.files).map(f => f.name).join(', ');
+            fileChosenText.style.color = 'var(--color-cyan)';
+          } else {
+            fileChosenText.textContent = 'File Anda dienkripsi otomatis secara lokal sebelum ditransmisikan.';
+            fileChosenText.style.color = '#94a3b8';
+          }
+        });
+      }
+
+      // Drag & drop effect
+      if (dropArea) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+          dropArea.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropArea.style.borderColor = 'var(--color-cyan)';
+            dropArea.style.background = 'rgba(6, 182, 212, 0.1)';
+          });
+        });
+        ['dragleave', 'drop'].forEach(eventName => {
+          dropArea.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            dropArea.style.borderColor = 'rgba(6, 182, 212, 0.35)';
+            dropArea.style.background = 'rgba(11, 19, 36, 0.5)';
+          });
+        });
+      }
+
+      // Form submission
+      if (wbsForm) {
+        wbsForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          // Generate cryptographic random token
+          const randomChars = Math.random().toString(36).substring(2, 7).toUpperCase();
+          const randomNum = Math.floor(1000 + Math.random() * 9000);
+          const generatedToken = `KPK-WBS-2026-${randomChars}${randomNum}`;
+
+          tokenDisplay.textContent = generatedToken;
+
+          // Save report summary to localStorage
+          try {
+            const history = JSON.parse(localStorage.getItem('kpk_wbs_history') || '[]');
+            history.unshift({
+              token: generatedToken,
+              judul: document.getElementById('judul-kasus').value,
+              kategori: document.getElementById('kategori-kasus').value,
+              instansi: document.getElementById('instansi-terlapor').value,
+              waktu: new Date().toLocaleString('id-ID'),
+              status: 'Diterima // Verifikasi Telaah Awal'
+            });
+            localStorage.setItem('kpk_wbs_history', JSON.stringify(history.slice(0, 10)));
+          } catch (err) {
+            console.warn('LocalStorage error:', err);
+          }
+
+          // Show modal
+          modal.classList.add('active');
+          wbsForm.reset();
+          if (fileChosenText) {
+            fileChosenText.textContent = 'File Anda dienkripsi otomatis secara lokal sebelum ditransmisikan.';
+            fileChosenText.style.color = '#94a3b8';
+          }
+        });
+      }
+
+      // Close modal
+      function closeModal() {
+        modal.classList.remove('active');
+      }
+
+      if (modalClose) modalClose.addEventListener('click', closeModal);
+      if (modalCloseDone) modalCloseDone.addEventListener('click', closeModal);
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      // Copy token button
+      if (copyTokenBtn) {
+        copyTokenBtn.addEventListener('click', () => {
+          const code = tokenDisplay.textContent;
+          navigator.clipboard.writeText(code).then(() => {
+            copyTokenBtn.textContent = 'Tersalin! ✔';
+            copyTokenBtn.style.background = 'var(--color-emerald)';
+            copyTokenBtn.style.borderColor = 'var(--color-emerald)';
+            setTimeout(() => {
+              copyTokenBtn.textContent = 'Salin Kode';
+              copyTokenBtn.style.background = 'rgba(6, 182, 212, 0.2)';
+              copyTokenBtn.style.borderColor = 'var(--color-cyan)';
+            }, 2500);
+          }).catch(() => {
+            alert('Kode: ' + code);
+          });
+        });
+      }
+
+      // Mobile nav toggle
+      const mobileBtn = document.getElementById('mobile-toggle');
+      const navMenu = document.getElementById('nav-links');
+      if (mobileBtn && navMenu) {
+        mobileBtn.addEventListener('click', () => {
+          navMenu.classList.toggle('show');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

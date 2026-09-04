@@ -1,252 +1,298 @@
 /**
- * charts.js — Dashboard Analisis Kerugian Negara (Chart.js)
- * Visualisasi:
- * 1. Bar Chart: 10 Kasus Korupsi dengan Nominal Terbesar
- * 2. Doughnut/Pie Chart: Persentase Korupsi Berdasarkan Sektor (BUMN, Pemda, Kementerian, Swasta)
- * Dilengkapi filter tombol tahun interaktif dan responsif di HP/Laptop.
+ * charts.js — Terminal Analitik Finansial / Trading Style (Chart.js Engine)
+ * Fitur:
+ * 1. Line/Area Chart dengan Glow Gradient: "Total Kerugian Negara vs Aset Dipulihkan"
+ * 2. Bar Chart / Candlestick Style: "Nominal Kerugian per Sektor" & "Fluktuasi Bulanan"
+ * 3. Timeframe Filter: [1 Bulan] [6 Bulan] [1 Tahun] [Semua Waktu]
+ * 4. Mode Tampilan Switcher (Area Glow / Sektor / Fluktuasi)
+ * 5. Pengisian data Ledger / Orderbook Transaksi Perkara Korupsi
  */
 
 (function () {
   'use strict';
 
-  let rawData = [];
-  let barChartInstance = null;
-  let pieChartInstance = null;
-  let activeYearFilter = 'all';
+  let tradingChartInstance = null;
+  let rawPelakuData = [];
+  let currentMode = 'area'; // 'area', 'sector', 'monthly'
+  let currentTimeframe = 'all'; // '1m', '6m', '1y', 'all'
 
-  // Fallback dataset jika dibuka tanpa HTTP server
+  // Dataset kronologis bulanan / semesteran untuk mode trading
+  const TIMEFRAME_DATA = {
+    '1m': {
+      labels: ['Mgg 1', 'Mgg 2', 'Mgg 3', 'Mgg 4'],
+      kerugian: [1.2, 2.4, 1.8, 3.1], // Dalam Triliun
+      pemulihan: [0.8, 1.9, 1.4, 2.5],
+      volatilitas: [4, 7, 5, 9]
+    },
+    '6m': {
+      labels: ['Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep'],
+      kerugian: [8.5, 14.2, 11.0, 22.4, 18.9, 39.7],
+      pemulihan: [4.2, 8.1, 7.5, 14.8, 12.0, 19.8],
+      volatilitas: [12, 18, 15, 26, 21, 34]
+    },
+    '1y': {
+      labels: ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025'],
+      kerugian: [16.4, 28.5, 39.7, 54.89],
+      pemulihan: [8.1, 15.2, 24.8, 41.2],
+      volatilitas: [22, 35, 42, 58]
+    },
+    'all': {
+      labels: ['2017', '2019', '2020', '2021', '2022', '2023', '2024'],
+      kerugian: [2.31, 2.45, 10.25, 10.35, 39.7, 44.5, 54.89],
+      pemulihan: [1.15, 1.30, 6.20, 6.80, 22.4, 28.9, 41.20],
+      volatilitas: [15, 18, 38, 42, 78, 65, 94]
+    }
+  };
+
+  // Fallback Data Pelaku
   const FALLBACK_DATA = [
-    { nama: "Surya Darmadi", instansi: "Swasta", nominal_kerugian: 39700000000000, tahun_penindakan: 2022 },
-    { nama: "Emirsyah Satar", instansi: "BUMN", nominal_kerugian: 9350000000000, tahun_penindakan: 2020 },
-    { nama: "Setya Novanto", instansi: "Kementerian", nominal_kerugian: 2314000000000, tahun_penindakan: 2017 },
-    { nama: "Karen Agustiawan", instansi: "BUMN", nominal_kerugian: 1770000000000, tahun_penindakan: 2024 },
-    { nama: "Djoko Tjandra", instansi: "Swasta", nominal_kerugian: 904000000000, tahun_penindakan: 2020 },
-    { nama: "Abdul G. Kasuba", instansi: "Pemda", nominal_kerugian: 109700000000, tahun_penindakan: 2024 },
-    { nama: "Syahrul Y. Limpo", instansi: "Kementerian", nominal_kerugian: 44500000000, tahun_penindakan: 2023 },
-    { nama: "Rahmat Effendi", instansi: "Pemda", nominal_kerugian: 17000000000, tahun_penindakan: 2022 }
+    { nama: "Surya Darmadi", instansi: "Swasta", nominal_kerugian: 39700000000000, tahun_penindakan: 2022, status_hukum: "Terpidana", nominal_formatted: "Rp 39,70 Triliun" },
+    { nama: "Emirsyah Satar", instansi: "BUMN", nominal_kerugian: 9350000000000, tahun_penindakan: 2020, status_hukum: "Terpidana", nominal_formatted: "Rp 9,35 Triliun" },
+    { nama: "Setya Novanto", instansi: "Kementerian", nominal_kerugian: 2314000000000, tahun_penindakan: 2017, status_hukum: "Terpidana", nominal_formatted: "Rp 2,31 Triliun" },
+    { nama: "Karen Agustiawan", instansi: "BUMN", nominal_kerugian: 1770000000000, tahun_penindakan: 2024, status_hukum: "Terpidana", nominal_formatted: "Rp 1,77 Triliun" },
+    { nama: "Djoko Tjandra", instansi: "Swasta", nominal_kerugian: 904000000000, tahun_penindakan: 2020, status_hukum: "Terpidana", nominal_formatted: "Rp 904 Miliar" },
+    { nama: "Abdul Gani Kasuba", instansi: "Pemda", nominal_kerugian: 109700000000, tahun_penindakan: 2024, status_hukum: "Terpidana", nominal_formatted: "Rp 109,7 Miliar" },
+    { nama: "Syahrul Yasin Limpo", instansi: "Kementerian", nominal_kerugian: 44500000000, tahun_penindakan: 2023, status_hukum: "Terpidana", nominal_formatted: "Rp 44,5 Miliar" },
+    { nama: "Rahmat Effendi", instansi: "Pemda", nominal_kerugian: 17000000000, tahun_penindakan: 2022, status_hukum: "Tersangka", nominal_formatted: "Rp 17,0 Miliar" }
   ];
 
-  // Formatter Rupiah
-  function formatCurrency(val) {
-    if (val >= 1e12) return `Rp ${(val / 1e12).toFixed(2)} T`;
-    if (val >= 1e9) return `Rp ${(val / 1e9).toFixed(1)} M`;
-    return `Rp ${val.toLocaleString('id-ID')}`;
-  }
-
-  // Ambil data dari data/pelaku.json
-  async function initData() {
+  // Inisialisasi Data
+  async function initTradingAnalytics() {
     try {
       const res = await fetch('data/pelaku.json');
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      rawData = await res.json();
+      rawPelakuData = await res.json();
     } catch (e) {
-      console.warn('Menggunakan fallback data untuk chart:', e);
-      rawData = FALLBACK_DATA;
+      console.warn('Menggunakan fallback data untuk trading terminal:', e);
+      rawPelakuData = FALLBACK_DATA;
     }
 
-    setupYearFilters();
-    renderCharts();
+    setupChartControls();
+    renderTradingChart();
+    populateLedgerTable();
   }
 
-  // Setup tombol filter pilihan tahun ("Semua Tahun", "2024", "2023", "2022", "2020-2017")
-  function setupYearFilters() {
-    const filterButtons = document.querySelectorAll('.year-btn');
-    filterButtons.forEach((btn) => {
+  // Setup Tombol Timeframe & Mode
+  function setupChartControls() {
+    // Timeframe Buttons
+    const tfButtons = document.querySelectorAll('.tf-btn[data-tf]');
+    tfButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterButtons.forEach((b) => b.classList.remove('active'));
+        tfButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        activeYearFilter = btn.getAttribute('data-year');
-        renderCharts();
+        currentTimeframe = btn.getAttribute('data-tf');
+        renderTradingChart();
+      });
+    });
+
+    // Chart Mode Buttons (Area Glow vs Sektor vs Fluktuasi)
+    const modeButtons = document.querySelectorAll('.mode-btn[data-mode]');
+    modeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMode = btn.getAttribute('data-mode');
+        renderTradingChart();
       });
     });
   }
 
-  // Filter dataset berdasarkan tahun yang dipilih
-  function getFilteredDataset() {
-    if (activeYearFilter === 'all') {
-      return rawData;
-    } else if (activeYearFilter.includes('-')) {
-      const [start, end] = activeYearFilter.split('-').map(Number);
-      return rawData.filter((d) => d.tahun_penindakan >= start && d.tahun_penindakan <= end);
-    } else {
-      const targetYear = Number(activeYearFilter);
-      return rawData.filter((d) => d.tahun_penindakan === targetYear);
-    }
-  }
+  // Render Grafik Gaya TradingView
+  function renderTradingChart() {
+    const canvas = document.getElementById('tradingMainChart');
+    if (!canvas) return;
 
-  // Render / Update kedua grafik
-  function renderCharts() {
-    const dataset = getFilteredDataset();
-    updateSummaryStats(dataset);
-    renderBarChart(dataset);
-    renderPieChart(dataset);
-  }
+    const ctx = canvas.getContext('2d');
+    const tfData = TIMEFRAME_DATA[currentTimeframe] || TIMEFRAME_DATA['all'];
 
-  // Update kartu ringkasan di atas grafik
-  function updateSummaryStats(data) {
-    const totalKerugian = data.reduce((acc, curr) => acc + (curr.nominal_kerugian || 0), 0);
-    const totalEl = document.getElementById('stat-total-kerugian');
-    const kasusEl = document.getElementById('stat-total-kasus');
-
-    if (totalEl) totalEl.textContent = formatCurrency(totalKerugian);
-    if (kasusEl) kasusEl.textContent = `${data.length} Kasus`;
-  }
-
-  // 1. Chart 1 (Bar Chart): "10 Kasus Korupsi dengan Nominal Terbesar"
-  function renderBarChart(data) {
-    const ctx = document.getElementById('barChartNominal');
-    if (!ctx) return;
-
-    // Urutkan dari terbesar ke terkecil, ambil 10 teratas
-    const sorted = [...data]
-      .sort((a, b) => b.nominal_kerugian - a.nominal_kerugian)
-      .slice(0, 10);
-
-    const labels = sorted.map((d) => (d.nama.length > 16 ? d.nama.substring(0, 16) + '...' : d.nama));
-    const values = sorted.map((d) => d.nominal_kerugian);
-
-    // Palet warna resmi: Merah KPK (#dc2626) untuk puncak, Dark Slate (#0f172a) untuk berikutnya
-    const bgColors = sorted.map((_, idx) => (idx === 0 ? '#dc2626' : idx < 3 ? '#ef4444' : '#0f172a'));
-
-    if (barChartInstance) {
-      barChartInstance.destroy();
+    if (tradingChartInstance) {
+      tradingChartInstance.destroy();
     }
 
-    barChartInstance = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Nominal Kerugian (Rp)',
-            data: values,
-            backgroundColor: bgColors,
-            borderRadius: 6,
-            borderWidth: 1,
-            borderColor: '#e2e8f0',
-            maxBarThickness: 44
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            backgroundColor: '#0f172a',
-            titleFont: { family: 'Plus Jakarta Sans', size: 13, weight: 'bold' },
-            bodyFont: { family: 'Plus Jakarta Sans', size: 12 },
-            padding: 12,
-            cornerRadius: 8,
-            callbacks: {
-              title: (items) => {
-                const idx = items[0].dataIndex;
-                return `${sorted[idx].nama} (${sorted[idx].instansi})`;
-              },
-              label: (context) => `Kerugian: ${formatCurrency(context.raw)}`
+    let chartConfig = null;
+
+    if (currentMode === 'area') {
+      // 1. Line / Area Chart with Glow Gradients: Kerugian vs Pemulihan
+      const gradientRed = ctx.createLinearGradient(0, 0, 0, 380);
+      gradientRed.addColorStop(0, 'rgba(220, 38, 38, 0.45)');
+      gradientRed.addColorStop(1, 'rgba(220, 38, 38, 0.0)');
+
+      const gradientCyan = ctx.createLinearGradient(0, 0, 0, 380);
+      gradientCyan.addColorStop(0, 'rgba(6, 182, 212, 0.45)');
+      gradientCyan.addColorStop(1, 'rgba(6, 182, 212, 0.0)');
+
+      chartConfig = {
+        type: 'line',
+        data: {
+          labels: tfData.labels,
+          datasets: [
+            {
+              label: 'Total Kerugian Negara (Triliun IDR)',
+              data: tfData.kerugian,
+              borderColor: '#dc2626',
+              backgroundColor: gradientRed,
+              borderWidth: 2.5,
+              tension: 0.38,
+              fill: true,
+              pointBackgroundColor: '#dc2626',
+              pointBorderColor: '#ffffff',
+              pointBorderWidth: 2,
+              pointRadius: 5,
+              pointHoverRadius: 8
+            },
+            {
+              label: 'Aset Recovery & Denda Dipulihkan (Triliun IDR)',
+              data: tfData.pemulihan,
+              borderColor: '#06b6d4',
+              backgroundColor: gradientCyan,
+              borderWidth: 2.5,
+              tension: 0.38,
+              fill: true,
+              pointBackgroundColor: '#06b6d4',
+              pointBorderColor: '#ffffff',
+              pointBorderWidth: 2,
+              pointRadius: 5,
+              pointHoverRadius: 8
             }
+          ]
+        },
+        options: getTradingOptions('Triliun IDR')
+      };
+    } else if (currentMode === 'sector') {
+      // 2. Bar Chart Gaya Candlestick: Nominal per Sektor
+      const sectorTotals = { 'Swasta': 0, 'BUMN': 0, 'Kementerian': 0, 'Pemda': 0 };
+      rawPelakuData.forEach(d => {
+        const instansi = d.instansi || 'Swasta';
+        if (sectorTotals.hasOwnProperty(instansi)) {
+          sectorTotals[instansi] += (d.nominal_kerugian / 1e12);
+        } else {
+          sectorTotals['Swasta'] += (d.nominal_kerugian / 1e12);
+        }
+      });
+
+      const sectorLabels = Object.keys(sectorTotals);
+      const sectorValues = Object.values(sectorTotals);
+
+      chartConfig = {
+        type: 'bar',
+        data: {
+          labels: sectorLabels,
+          datasets: [{
+            label: 'Kerugian Negara per Sektor (Triliun IDR)',
+            data: sectorValues,
+            backgroundColor: [
+              'rgba(220, 38, 38, 0.85)',
+              'rgba(199, 154, 60, 0.85)',
+              'rgba(6, 182, 212, 0.85)',
+              'rgba(16, 185, 129, 0.85)'
+            ],
+            borderColor: ['#dc2626', '#c79a3c', '#06b6d4', '#10b981'],
+            borderWidth: 1.5,
+            borderRadius: 6,
+            maxBarThickness: 54
+          }]
+        },
+        options: getTradingOptions('Triliun IDR')
+      };
+    } else {
+      // 3. Fluktuasi Kasus & Indeks Volatilitas
+      chartConfig = {
+        type: 'bar',
+        data: {
+          labels: tfData.labels,
+          datasets: [{
+            label: 'Indeks Intensitas Penindakan KPK',
+            data: tfData.volatilitas,
+            backgroundColor: 'rgba(6, 182, 212, 0.65)',
+            borderColor: '#06b6d4',
+            borderWidth: 1.5,
+            borderRadius: 6
+          }]
+        },
+        options: getTradingOptions('Poin Indeks')
+      };
+    }
+
+    tradingChartInstance = new Chart(ctx, chartConfig);
+  }
+
+  // Opsi Format TradingView Dark
+  function getTradingOptions(unit) {
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'index',
+        intersect: false
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: {
+            font: { family: 'Plus Jakarta Sans', size: 12, weight: '600' },
+            color: '#94a3b8',
+            usePointStyle: true,
+            pointStyle: 'circle'
           }
         },
-        scales: {
-          x: {
-            grid: { display: false },
-            ticks: {
-              font: { family: 'Plus Jakarta Sans', size: 11, weight: '600' },
-              color: '#334155'
-            }
-          },
-          y: {
-            grid: { color: '#f1f5f9' },
-            ticks: {
-              font: { family: 'Plus Jakarta Sans', size: 11 },
-              color: '#64748b',
-              callback: (val) => formatCurrency(val)
-            }
+        tooltip: {
+          backgroundColor: 'rgba(11, 19, 36, 0.95)',
+          titleFont: { family: 'JetBrains Mono', size: 13, weight: 'bold' },
+          bodyFont: { family: 'JetBrains Mono', size: 12 },
+          borderColor: 'rgba(6, 182, 212, 0.3)',
+          borderWidth: 1,
+          padding: 12,
+          cornerRadius: 8,
+          callbacks: {
+            label: (ctx) => ` ${ctx.dataset.label}: ${ctx.raw} ${unit}`
           }
         }
-      }
-    });
-  }
-
-  // 2. Chart 2 (Pie/Doughnut Chart): "Persentase Korupsi Berdasarkan Sektor"
-  function renderPieChart(data) {
-    const ctx = document.getElementById('pieChartSektor');
-    if (!ctx) return;
-
-    // Hitung akumulasi per instansi / sektor (BUMN, Pemda, Kementerian, Swasta)
-    const sectors = { Swasta: 0, BUMN: 0, Kementerian: 0, Pemda: 0 };
-    data.forEach((d) => {
-      const instansi = d.instansi || 'Swasta';
-      if (sectors.hasOwnProperty(instansi)) {
-        sectors[instansi] += d.nominal_kerugian;
-      } else {
-        sectors['Swasta'] += d.nominal_kerugian;
-      }
-    });
-
-    const labels = Object.keys(sectors);
-    const values = Object.values(sectors);
-
-    // Palet warna resmi pemerintah
-    const colors = [
-      '#dc2626', // Swasta (Merah)
-      '#c79a3c', // BUMN (Gold)
-      '#0f172a', // Kementerian (Dark Slate)
-      '#10b981'  // Pemda (Emerald)
-    ];
-
-    if (pieChartInstance) {
-      pieChartInstance.destroy();
-    }
-
-    pieChartInstance = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            data: values,
-            backgroundColor: colors,
-            borderWidth: 3,
-            borderColor: '#ffffff',
-            hoverOffset: 6
-          }
-        ]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '62%',
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              font: { family: 'Plus Jakarta Sans', size: 12, weight: '600' },
-              color: '#1e293b',
-              padding: 16,
-              usePointStyle: true,
-              pointStyle: 'circle'
-            }
-          },
-          tooltip: {
-            backgroundColor: '#0f172a',
-            padding: 12,
-            cornerRadius: 8,
-            callbacks: {
-              label: (context) => {
-                const val = context.raw;
-                const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                const pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
-                return ` ${context.label}: ${formatCurrency(val)} (${pct}%)`;
-              }
-            }
+      scales: {
+        x: {
+          grid: { color: 'rgba(255, 255, 255, 0.04)' },
+          ticks: {
+            font: { family: 'JetBrains Mono', size: 11, weight: '600' },
+            color: '#64748b'
+          }
+        },
+        y: {
+          grid: { color: 'rgba(255, 255, 255, 0.04)' },
+          ticks: {
+            font: { family: 'JetBrains Mono', size: 11 },
+            color: '#64748b',
+            callback: (val) => `${val} T`
           }
         }
       }
-    });
+    };
   }
 
-  // Load saat DOM siap
-  document.addEventListener('DOMContentLoaded', initData);
+  // Isi Tabel Ledger / Orderbook Finansial
+  function populateLedgerTable() {
+    const tableBody = document.getElementById('ledgerTableBody');
+    if (!tableBody) return;
+
+    tableBody.innerHTML = rawPelakuData.map((item, idx) => {
+      const isRecoveryHigh = (item.nominal_kerugian > 1e12);
+      const estRecovery = (item.nominal_kerugian * 0.15); // Estimasi sitaan
+
+      return `
+        <tr>
+          <td><span style="color: #94a3b8;">#${String(idx + 1).padStart(2, '0')}</span></td>
+          <td><strong style="color: #ffffff;">${item.nama}</strong> <span style="font-size: 0.72rem; color: #64748b;">(${item.instansi})</span></td>
+          <td class="ledger-loss">${item.nominal_formatted}</td>
+          <td class="ledger-recovery">${(estRecovery >= 1e12 ? `Rp ${(estRecovery / 1e12).toFixed(2)} T` : `Rp ${(estRecovery / 1e9).toFixed(1)} M`)}</td>
+          <td>
+            <span class="status-badge ${item.status_hukum === 'Terpidana' ? 'badge-terpidana' : 'badge-tersangka'}">
+              ${item.status_hukum}
+            </span>
+          </td>
+          <td style="color: #94a3b8;">${item.tahun_penindakan}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', initTradingAnalytics);
 })();

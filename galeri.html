@@ -3,32 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Galeri Pelaku Tindak Pidana Korupsi — Direktori publik transparansi nama, jabatan, instansi, dan total kerugian negara kasus korupsi di Indonesia.">
+  <meta name="description" content="Direktori Terbuka Pelaku Korupsi Indonesia — Pencarian Real-Time, Filter Sektor, dan Informasi Putusan Inkracht Mahkamah Agung.">
   <title>Galeri Pelaku Korupsi | Portal Transparansi KPK</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="stylesheet" href="style.css">
+  <!-- GSAP 3 CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
-  <!-- Top Legal Disclaimer Bar -->
-  <div class="top-disclaimer-bar">
-    <div class="container top-disclaimer-content">
-      <div class="disclaimer-badge">
-        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-        </svg>
-        <span><strong>PORTAL INFORMASI PUBLIK:</strong> Data bersumber dari putusan pengadilan berkekuatan hukum tetap (inkracht) & rilis resmi penegak hukum.</span>
-      </div>
-      <div class="disclaimer-links">
-        <a href="https://kpk.go.id" target="_blank" rel="noopener">kpk.go.id</a>
-        <a href="https://putusan3.mahkamahagung.go.id" target="_blank" rel="noopener">Putusan Mahkamah Agung</a>
-        <a href="tel:198">Call Center: <strong>198</strong></a>
-      </div>
-    </div>
-  </div>
+  <!-- Ambient Canvas Background -->
+  <canvas id="ambient-canvas"></canvas>
 
-  <!-- Navbar Responsif -->
+  <!-- Live Financial Ticker Bar -->
+  <aside class="ticker-bar-wrap" aria-label="Live Ticker">
+    <div class="ticker-content">
+      <span class="ticker-item">🔴 <strong>DIREKTORI PERKARA TIPIKOR</strong></span>
+      <span class="ticker-item">TERPIDANA KAKAP: <strong>8 TOKOH KUNCI</strong></span>
+      <span class="ticker-item">AKUMULASI KERUGIAN: <strong>Rp 54.89 T</strong> <span class="ticker-down">▼ TERBUKTI</span></span>
+      <span class="ticker-item">ASET DISITA: <strong>Rp 4.12 T</strong> <span class="ticker-up">▲ RECOVERY</span></span>
+      <span class="ticker-item">LEGAL STATUS: <strong>100% INKRACHT</strong> <span class="ticker-cyan">MAHKAMAH AGUNG</span></span>
+      <span class="ticker-item">CALL CENTER: <strong>198</strong></span>
+      <!-- Loop duplicate -->
+      <span class="ticker-item">🔴 <strong>DIREKTORI PERKARA TIPIKOR</strong></span>
+      <span class="ticker-item">TERPIDANA KAKAP: <strong>8 TOKOH KUNCI</strong></span>
+      <span class="ticker-item">AKUMULASI KERUGIAN: <strong>Rp 54.89 T</strong> <span class="ticker-down">▼ TERBUKTI</span></span>
+      <span class="ticker-item">ASET DISITA: <strong>Rp 4.12 T</strong> <span class="ticker-up">▲ RECOVERY</span></span>
+    </div>
+  </aside>
+
+  <!-- Navbar -->
   <header class="navbar">
     <div class="container nav-wrap">
       <a href="index.html" class="nav-brand">
@@ -39,15 +44,16 @@
         </div>
         <div class="brand-text">
           <div class="brand-title">PORTAL TRANSPARANSI <span>KPK</span></div>
-          <div class="brand-sub">DATA KORUPSI INDONESIA</div>
+          <div class="brand-sub">KATALOG TERPIDANA INKRACHT</div>
         </div>
       </a>
 
       <nav>
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html" class="nav-link">Beranda</a></li>
+          <li><a href="analisis.html" class="nav-link">Live Analytics</a></li>
           <li><a href="galeri.html" class="nav-link active">Galeri Pelaku</a></li>
-          <li><a href="analisis.html" class="nav-link">Analisis Data</a></li>
+          <li><a href="laporan.html" class="nav-link">Edukasi & WBS</a></li>
         </ul>
       </nav>
 
@@ -66,14 +72,14 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" style="padding-top: 2rem;">
     <!-- Page Header -->
     <section class="page-header">
-      <span class="badge-tag">Direktori Publik Terbuka</span>
+      <span class="badge-tag red">Direktori Publik Terverifikasi</span>
       <h1 class="page-title">Galeri Terpidana & Tersangka Korupsi</h1>
       <div class="red-divider"></div>
       <p class="page-desc">
-        Pencarian dan pemantauan profil individu yang terbukti secara sah melakukan tindak pidana korupsi yang merugikan keuangan negara. Data diperbarui berdasarkan amar putusan berkekuatan hukum tetap.
+        Pusat data publik profil individu yang dijatuhi vonis pidana bersalah atas tindak pidana korupsi yang merugikan keuangan negara. Seluruh data terhubung dengan putusan inkracht Mahkamah Agung.
       </p>
     </section>
 
@@ -88,7 +94,7 @@
           <input 
             type="text" 
             id="search-input" 
-            placeholder="Cari nama, alias, atau jabatan pelaku korupsi..." 
+            placeholder="Cari nama, alias, instansi, atau perkara korupsi..." 
             autocomplete="off"
           />
         </div>
@@ -114,13 +120,14 @@
       </div>
     </section>
 
-    <!-- Result Count Display -->
+    <!-- Result Counter Bar -->
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
-      <div id="result-count" style="font-size: 0.9rem; font-weight: 700; color: #0f172a;">
+      <div id="result-count" style="font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700; color: #ffffff;">
         Memuat data pelaku korupsi...
       </div>
-      <div style="font-size: 0.78rem; color: #64748b;">
-        Sumber: Mahkamah Agung RI & KPK
+      <div style="font-size: 0.78rem; color: #94a3b8; display: flex; align-items: center; gap: 0.4rem;">
+        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span>
+        Status: Data Sah Terverifikasi Mahkamah Agung
       </div>
     </div>
 
@@ -130,6 +137,33 @@
     </section>
   </main>
 
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="pelakuModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="brand-emblem" style="width: 32px; height: 32px;">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4z"/>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size: 1.05rem; font-weight: 800; color: #ffffff;">DETAIL PUTUSAN HUKUM INKRACHT</div>
+            <div style="font-size: 0.7rem; color: var(--color-cyan); font-family: var(--font-mono);">DIREKTORI PERKARA TIPIKOR</div>
+          </div>
+        </div>
+        <button class="modal-close" id="modalCloseBtn" aria-label="Tutup Modal">
+          <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBodyContent">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="portal-footer">
     <div class="container">
@@ -137,7 +171,7 @@
         <div>
           <div class="footer-brand-title">Portal Transparansi Data Korupsi</div>
           <p class="footer-desc">
-            Website independen transparansi publik mengenai kasus korupsi dan kerugian keuangan negara di Indonesia. Bertujuan untuk edukasi masyarakat dan integritas penyelenggaraan negara.
+            Katalog dan direktori terbuka mengenai pelaku tindak pidana korupsi inkracht di Indonesia. Dibangun untuk transparansi publik dan integritas penegakan hukum.
           </p>
         </div>
 
@@ -145,30 +179,32 @@
           <div class="footer-col-title">Navigasi Utama</div>
           <ul class="footer-links-list">
             <li><a href="index.html">Beranda Portal</a></li>
-            <li><a href="galeri.html">Galeri Pelaku Korupsi</a></li>
-            <li><a href="analisis.html">Analisis Data Kerugian</a></li>
+            <li><a href="analisis.html">Trading Terminal Analisis</a></li>
+            <li><a href="galeri.html">Katalog Pelaku Korupsi</a></li>
+            <li><a href="laporan.html">Edukasi & Pengaduan WBS</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="footer-col-title">Saluran Resmi KPK</div>
+          <div class="footer-col-title">Kanal Pengaduan</div>
           <ul class="footer-links-list">
             <li><a href="tel:198">Call Center: 198</a></li>
             <li><a href="mailto:pengaduan@kpk.go.id">pengaduan@kpk.go.id</a></li>
-            <li><a href="https://kpk.go.id" target="_blank" rel="noopener">Website Resmi KPK</a></li>
+            <li><a href="https://kpk.go.id" target="_blank" rel="noopener">Situs Resmi KPK RI</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom-bar">
         <div>&copy; 2026 Portal Transparansi Data Korupsi Indonesia.</div>
-        <div style="color: #64748b;">Merah KPK (#dc2626) &bull; Dark Slate (#0f172a)</div>
+        <div style="font-family: var(--font-mono); color: var(--color-cyan);">CYBER-GOVERNMENT THEME // 60 FPS</div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="galeri.js"></script>
+  <script src="main.js"></script>
   <script>
     const mobileBtn = document.getElementById('mobile-toggle');
     const navMenu = document.getElementById('nav-links');

@@ -3,38 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portal Transparansi Data Korupsi — Platform publik visualisasi kerugian keuangan negara, direktori pelaku inkracht, dan analitik peradilan tipikor.">
-  <title>Portal Transparansi Data Korupsi Indonesia | Beranda</title>
+  <meta name="description" content="Portal Transparansi Data Korupsi — Landing Page Intelijen Finansial, Direktori Perkara Tipikor, dan Dashboard Analitik Interaktif Nasional.">
+  <title>Portal Transparansi Data Korupsi | Beranda Intelijen Finansial</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- GSAP 3 CDN (GreenSock Animation Platform) -->
+  <!-- Chart.js CDN for Trading Style Visuals -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- GSAP 3 CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
-  <!-- Background Canvas for Ambient Slow-Motion Particles / Light Dust -->
+  <!-- Background Ambient Floating Particles -->
   <canvas id="ambient-canvas"></canvas>
 
-  <!-- Top Legal Disclaimer Bar -->
-  <div class="top-disclaimer-bar">
-    <div class="container top-disclaimer-content">
-      <div class="disclaimer-badge">
-        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-        </svg>
-        <span><strong>TRANSPARANSI PUBLIK:</strong> Inisiatif literasi data korupsi berbasis putusan resmi inkracht Mahkamah Agung RI & KPK.</span>
-      </div>
-      <div class="disclaimer-links">
-        <a href="https://kpk.go.id" target="_blank" rel="noopener">kpk.go.id</a>
-        <a href="https://putusan3.mahkamahagung.go.id" target="_blank" rel="noopener">Putusan Mahkamah Agung</a>
-        <a href="tel:198">Call Center KPK: <strong>198</strong></a>
-      </div>
+  <!-- Section 1. Running Ticker Bar (Trading/Terminal Style) -->
+  <aside class="ticker-bar-wrap" aria-label="Live Telemetry Ticker">
+    <div class="ticker-content">
+      <span class="ticker-item">🔴 <strong>KPK SENTINEL TERMINAL v4.2</strong></span>
+      <span class="ticker-item">KERUGIAN NEGARA: <strong>Rp 54.89 T</strong> <span class="ticker-down">▼ CRITICAL</span></span>
+      <span class="ticker-item">ASET DISITA: <strong>Rp 4.12 T</strong> <span class="ticker-up">▲ 78.4% RECOVERY</span></span>
+      <span class="ticker-item">PUTUSAN INKRACHT: <strong>100% SAH</strong> <span class="ticker-cyan">MAHKAMAH AGUNG</span></span>
+      <span class="ticker-item">KASUS TERPANTAU: <strong>8 PERKARA KAKAP</strong></span>
+      <span class="ticker-item">CALL CENTER GRATIS: <strong>198</strong></span>
+      <span class="ticker-item">WHISTLEBLOWING SYSTEM: <strong>ONLINE</strong></span>
+      <!-- Duplicate for infinite seamless scroll -->
+      <span class="ticker-item">🔴 <strong>KPK SENTINEL TERMINAL v4.2</strong></span>
+      <span class="ticker-item">KERUGIAN NEGARA: <strong>Rp 54.89 T</strong> <span class="ticker-down">▼ CRITICAL</span></span>
+      <span class="ticker-item">ASET DISITA: <strong>Rp 4.12 T</strong> <span class="ticker-up">▲ 78.4% RECOVERY</span></span>
+      <span class="ticker-item">PUTUSAN INKRACHT: <strong>100% SAH</strong> <span class="ticker-cyan">MAHKAMAH AGUNG</span></span>
+      <span class="ticker-item">KASUS TERPANTAU: <strong>8 PERKARA KAKAP</strong></span>
+      <span class="ticker-item">CALL CENTER GRATIS: <strong>198</strong></span>
     </div>
-  </div>
+  </aside>
 
-  <!-- Navbar Responsif -->
+  <!-- Sticky Navbar with Scroll-Spy -->
   <header class="navbar">
     <div class="container nav-wrap">
       <a href="index.html" class="nav-brand">
@@ -45,26 +50,35 @@
         </div>
         <div class="brand-text">
           <div class="brand-title">PORTAL TRANSPARANSI <span>KPK</span></div>
-          <div class="brand-sub">DATA KORUPSI INDONESIA</div>
+          <div class="brand-sub">CYBER INTELLIGENCE HUB</div>
         </div>
       </a>
 
+      <!-- Scroll-Spy Navigation Links -->
       <nav>
         <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" class="nav-link active">Beranda</a></li>
-          <li><a href="galeri.html" class="nav-link">Galeri Pelaku</a></li>
-          <li><a href="analisis.html" class="nav-link">Analisis Data</a></li>
+          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+          <li><a href="#analytics" class="nav-link">Live Analytics</a></li>
+          <li><a href="#galeri" class="nav-link">Galeri Pelaku</a></li>
+          <li><a href="#edukasi" class="nav-link">Edukasi & WBS</a></li>
         </ul>
       </nav>
 
-      <a href="tel:198" class="nav-cta">
-        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-        </svg>
-        Saluran Pengaduan (198)
-      </a>
+      <!-- Sub-Page Quick Action Links -->
+      <div style="display: flex; align-items: center; gap: 0.65rem;">
+        <a href="analisis.html" class="nav-link" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-cyan); border: 1px solid rgba(6,182,212,0.3); padding: 0.45rem 0.85rem; border-radius: 6px;">
+          Terminal Full &rarr;
+        </a>
+        <a href="laporan.html" class="nav-cta">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+          </svg>
+          Lapor WBS
+        </a>
+      </div>
 
-      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu Navigasi">
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
         <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -73,145 +87,234 @@
   </header>
 
   <main class="container">
-    <!-- Hero Banner with Slow Pulsing Glow Title -->
-    <section class="page-header" style="text-align: center; padding: 4.5rem 0 3.5rem;">
-      <span class="badge-tag" style="margin: 0 auto 1.25rem;">
-        <svg width="13" height="13" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+
+    <!-- ==================== SECTION 1: BERANDA & HERO ==================== -->
+    <section id="beranda" class="page-header" style="text-align: center; padding: 4.5rem 0 3rem;">
+      <span class="badge-tag">
+        <svg width="12" height="12" fill="currentColor" viewBox="0 0 20 20">
+          <circle cx="10" cy="10" r="8"/>
         </svg>
-        Sistem Pemantauan & Rekapitulasi Kerugian Negara
+        Sistem Audit & Intelijen Finansial Anti-Korupsi
       </span>
 
-      <h1 class="page-title" style="font-size: 3.2rem; max-width: 900px; margin: 0 auto 1.25rem;">
+      <h1 class="page-title" style="font-size: 3.35rem; max-width: 960px; margin: 0 auto 1.25rem;">
         Kawal Uang Rakyat dengan<br>
-        <span style="color: var(--color-primary-red); text-shadow: 0 0 20px rgba(220, 38, 38, 0.35);">
-          Transparansi Data Nyata & Terbuka
+        <span style="color: var(--color-primary-red); text-shadow: 0 0 25px rgba(220, 38, 38, 0.45);">
+          Transparansi Data Presisi & Terbuka
         </span>
       </h1>
 
       <p class="page-desc" style="margin: 0 auto 2.5rem;">
-        Portal publik yang menyajikan ringkasan perkara korupsi berkekuatan hukum tetap, profil pelaku, nominal kerugian keuangan negara, serta analitik komparasi lintas sektor (BUMN, Pemda, Kementerian, Swasta).
+        Integrasi analitik kerugian keuangan negara, direktori terpidana inkracht Mahkamah Agung, dan visualisasi interaktif bergaya terminal finansial untuk advokasi integritas nasional.
       </p>
 
-      <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <a href="galeri.html" class="nav-cta" style="background-color: var(--color-primary-red); border-color: var(--color-primary-red); padding: 0.85rem 1.85rem; font-size: 0.95rem; box-shadow: 0 8px 20px rgba(220, 38, 38, 0.35);">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem;">
+        <a href="#analytics" class="nav-cta" style="padding: 0.85rem 1.85rem; font-size: 0.95rem;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+          Live Trading Terminal
+        </a>
+
+        <a href="galeri.html" class="nav-cta" style="background: rgba(15,23,42,0.8); border-color: rgba(255,255,255,0.2); padding: 0.85rem 1.75rem; font-size: 0.95rem;">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
           </svg>
-          Buka Galeri Pelaku
+          Katalog Lengkap Pelaku
         </a>
 
-        <a href="analisis.html" class="nav-cta" style="background-color: var(--color-dark-slate); border-color: var(--color-dark-slate); padding: 0.85rem 1.85rem; font-size: 0.95rem;">
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-          </svg>
-          Buka Analisis Grafik
-        </a>
-
-        <button type="button" class="nav-cta" id="btn-sync-realtime" style="background-color: #ffffff; color: var(--color-dark-slate); border-color: #cbd5e1; padding: 0.85rem 1.5rem; font-size: 0.95rem; cursor: pointer;">
+        <button type="button" class="nav-cta" id="btn-sync-realtime" style="background: rgba(6,182,212,0.1); border-color: var(--color-cyan); color: var(--color-cyan); padding: 0.85rem 1.4rem; font-size: 0.95rem; cursor: pointer;">
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
-          Sinkronisasi Metrik Realtime
+          Sync Data Realtime
         </button>
       </div>
+
+      <!-- Realtime High-Impact Metric Cards (GSAP Number Tick-Up) -->
+      <div class="realtime-metrics-grid">
+        <article class="kpi-card tilt-card">
+          <span class="kpi-label">Total Kerugian Negara</span>
+          <div class="kpi-number" id="metric-kerugian" style="color: #f87171;">Rp 0.00 T</div>
+          <div class="kpi-progress-bar">
+            <div class="kpi-progress-fill" data-target-width="100%"></div>
+          </div>
+          <div class="kpi-sub" style="color: #f87171;">
+            <span>▲</span> Putusan Inkracht Mahkamah Agung
+          </div>
+        </article>
+
+        <article class="kpi-card cyan tilt-card">
+          <span class="kpi-label">Aset Recovery & Denda</span>
+          <div class="kpi-number" id="metric-aset" style="color: var(--color-cyan);">Rp 0.00 T</div>
+          <div class="kpi-progress-bar">
+            <div class="kpi-progress-fill" data-target-width="75%"></div>
+          </div>
+          <div class="kpi-sub" style="color: var(--color-cyan);">
+            <span>▲</span> Pemulihan Keuangan Negara
+          </div>
+        </article>
+
+        <article class="kpi-card emerald tilt-card">
+          <span class="kpi-label">Tingkat Pemulihan (Recovery)</span>
+          <div class="kpi-number" id="metric-recovery" style="color: var(--color-emerald);">0.0%</div>
+          <div class="kpi-progress-bar">
+            <div class="kpi-progress-fill" data-target-width="78.4%"></div>
+          </div>
+          <div class="kpi-sub">
+            <span>▲</span> Efektivitas Eksekusi Kejaksaan/KPK
+          </div>
+        </article>
+
+        <article class="kpi-card gold tilt-card">
+          <span class="kpi-label">Pelaku Korupsi Terdaftar</span>
+          <div class="kpi-number" id="metric-kasus" style="color: var(--color-gold);">0 Tokoh</div>
+          <div class="kpi-progress-bar">
+            <div class="kpi-progress-fill" data-target-width="100%"></div>
+          </div>
+          <div class="kpi-sub" style="color: var(--color-gold);">
+            <span>●</span> 100% Terpidana / Tersangka Sah
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Realtime Metric Cards with 3D Parallax Tilt & GSAP 3-4s Number Tick-Up -->
-    <section class="realtime-metrics-grid">
-      <!-- Metric 1 -->
-      <article class="kpi-card tilt-card">
-        <span class="kpi-label">Total Kerugian Negara</span>
-        <div class="kpi-number" id="metric-kerugian" style="color: var(--color-primary-red);">Rp 0.00 T</div>
-        <div class="kpi-progress-bar">
-          <div class="kpi-progress-fill" data-target-width="100%"></div>
-        </div>
-        <div style="font-size: 0.76rem; color: #64748b; margin-top: 0.65rem;">
-          Akumulasi perkara korupsi terverifikasi
-        </div>
-      </article>
-
-      <!-- Metric 2 -->
-      <article class="kpi-card slate tilt-card">
-        <span class="kpi-label">Pelaku Korupsi Terdata</span>
-        <div class="kpi-number" id="metric-kasus">0 Tokoh</div>
-        <div class="kpi-progress-bar">
-          <div class="kpi-progress-fill" data-target-width="88%"></div>
-        </div>
-        <div style="font-size: 0.76rem; color: #64748b; margin-top: 0.65rem;">
-          Terdokumentasi dalam database direktori
-        </div>
-      </article>
-
-      <!-- Metric 3 -->
-      <article class="kpi-card gold tilt-card">
-        <span class="kpi-label">Total Aset & Denda Disita</span>
-        <div class="kpi-number" id="metric-aset" style="color: #b45309;">Rp 0.00 T</div>
-        <div class="kpi-progress-bar">
-          <div class="kpi-progress-fill" data-target-width="65%"></div>
-        </div>
-        <div style="font-size: 0.76rem; color: #64748b; margin-top: 0.65rem;">
-          Pemulihan keuangan aset recovery
-        </div>
-      </article>
-
-      <!-- Metric 4 -->
-      <article class="kpi-card tilt-card">
-        <span class="kpi-label">Tingkat Pemulihan Aset</span>
-        <div class="kpi-number" id="metric-recovery" style="color: #10b981;">0.0%</div>
-        <div class="kpi-progress-bar">
-          <div class="kpi-progress-fill" style="background: linear-gradient(90deg, #10b981, #34d399);" data-target-width="78.4%"></div>
-        </div>
-        <div style="font-size: 0.76rem; color: #64748b; margin-top: 0.65rem;">
-          Rasio eksekusi uang pengganti perkara
-        </div>
-      </article>
-    </section>
-
-    <!-- Quick Feature Section -->
-    <section style="background: #ffffff; border-radius: 16px; border: 1px solid var(--color-border); padding: 2.5rem; box-shadow: var(--shadow-md); margin-bottom: 4rem;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-        <div>
-          <div style="width: 44px; height: 44px; border-radius: 10px; background: #fef2f2; color: #dc2626; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-            </svg>
+    <!-- ==================== SECTION 2: LIVE ANALYTICS (TRADING STYLE) ==================== -->
+    <section id="analytics" style="padding: 3rem 0; scroll-margin-top: 80px;">
+      <div class="terminal-panel">
+        <div class="terminal-header">
+          <div class="terminal-symbol-meta">
+            <span class="symbol-badge">KERUGIAN-IDR</span>
+            <div>
+              <h2 class="terminal-title">
+                Trading Analytics: Kerugian Negara vs Aset Dipulihkan
+              </h2>
+              <div class="terminal-subtitle">KPK FINANCIAL RECOVERY INDEX // LIVE FEED</div>
+            </div>
           </div>
-          <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Galeri Pelaku Realtime</h3>
-          <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6;">
-            Pencarian instan nama atau jabatan terpidana korupsi dengan sorting nominal kerugian terbesar ke terkecil.
-          </p>
-          <a href="galeri.html" style="font-size: 0.85rem; font-weight: 700; color: #dc2626; display: inline-block; margin-top: 0.75rem;">Buka Galeri Pelaku &rarr;</a>
+
+          <!-- Timeframe Filters & View Toggles -->
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <!-- Mode Switcher -->
+            <div class="timeframe-group">
+              <button class="tf-btn mode-btn active" data-mode="area">Area Glow</button>
+              <button class="tf-btn mode-btn" data-mode="sector">Bar Sektor</button>
+              <button class="tf-btn mode-btn" data-mode="monthly">Fluktuasi</button>
+            </div>
+
+            <!-- Timeframe Filter -->
+            <div class="timeframe-group">
+              <button class="tf-btn" data-tf="1m">1 Bulan</button>
+              <button class="tf-btn" data-tf="6m">6 Bulan</button>
+              <button class="tf-btn" data-tf="1y">1 Tahun</button>
+              <button class="tf-btn active" data-tf="all">Semua Waktu</button>
+            </div>
+
+            <a href="analisis.html" class="tf-btn cyan active" style="text-decoration: none;">
+              Layar Penuh &rarr;
+            </a>
+          </div>
         </div>
 
-        <div>
-          <div style="width: 44px; height: 44px; border-radius: 10px; background: #f8fafc; color: #0f172a; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
-            </svg>
-          </div>
-          <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Dashboard Grafik Interaktif</h3>
-          <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6;">
-            Visualisasi Chart.js 10 kasus terbesar dan persentase proporsi sektor korupsi (BUMN, Pemda, Kementerian, Swasta).
-          </p>
-          <a href="analisis.html" style="font-size: 0.85rem; font-weight: 700; color: #0f172a; display: inline-block; margin-top: 0.75rem;">Buka Dashboard Analisis &rarr;</a>
+        <!-- Main Trading Chart Container -->
+        <div style="position: relative; width: 100%; height: 380px; margin-bottom: 1.5rem;">
+          <canvas id="tradingMainChart"></canvas>
         </div>
 
+        <!-- Mini Ledger / Orderbook Table Preview -->
         <div>
-          <div style="width: 44px; height: 44px; border-radius: 10px; background: #ecfdf5; color: #047857; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.65rem;">
+            <div style="font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700; color: var(--color-cyan);">
+              BUKU BESAR TRANSAKSI PERKARA (LEDGER AUDIT)
+            </div>
+            <a href="analisis.html" style="font-size: 0.78rem; font-family: var(--font-mono); color: #94a3b8; text-decoration: underline;">
+              Buka Semua Data Transaksi &rarr;
+            </a>
           </div>
-          <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem;">Integritas & Akurasi Hukum</h3>
-          <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6;">
-            Seluruh data dipublikasikan mematuhi asas keterbukaan informasi publik dan hanya merujuk putusan berkekuatan hukum tetap (inkracht).
-          </p>
-          <a href="https://kpk.go.id" target="_blank" rel="noopener" style="font-size: 0.85rem; font-weight: 700; color: #047857; display: inline-block; margin-top: 0.75rem;">Website KPK RI &rarr;</a>
+
+          <div class="ledger-table-wrap">
+            <table class="ledger-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Terpidana (Sektor)</th>
+                  <th>Total Kerugian Negara</th>
+                  <th>Estimasi Aset Disita</th>
+                  <th>Status Hukum</th>
+                  <th>Tahun</th>
+                </tr>
+              </thead>
+              <tbody id="ledgerTableBody">
+                <!-- Populated via charts.js -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ==================== SECTION 3: GALERI PELAKU (PREVIEW) ==================== -->
+    <section id="galeri" style="padding: 3.5rem 0; scroll-margin-top: 80px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="badge-tag red">Direktori Terpidana</span>
+          <h2 class="page-title" style="font-size: 2.2rem; margin: 0;">Sorotan Kasus Korupsi Terbesar</h2>
+          <div class="red-divider"></div>
+        </div>
+        <a href="galeri.html" class="nav-cta" style="background: rgba(15,23,42,0.8); border: 1px solid rgba(220,38,38,0.4); text-decoration: none;">
+          Buka Galeri Lengkap (8+ Kasus) &rarr;
+        </a>
+      </div>
+
+      <!-- Grid Cards Preview (Dynamically loaded by galeri.js) -->
+      <div class="cards-grid" id="cards-grid-container">
+        <!-- Injected via galeri.js -->
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: EDUKASI & PENGADUAN (WBS) ==================== -->
+    <section id="edukasi" style="padding: 2.5rem 0 4rem; scroll-margin-top: 80px;">
+      <div class="wbs-card">
+        <div class="wbs-grid">
+          <div>
+            <span class="badge-tag" style="margin-bottom: 1rem;">Whistleblowing System Terenkripsi</span>
+            <h2 style="font-size: 2rem; font-weight: 800; color: #ffffff; line-height: 1.25; margin-bottom: 1rem;">
+              Mengetahui Indikasi Korupsi?<br>
+              <span style="color: var(--color-cyan);">Laporkan Secara Rahasia & Aman</span>
+            </h2>
+            <p style="font-size: 0.95rem; color: #94a3b8; line-height: 1.7; margin-bottom: 1.5rem;">
+              Sesuai UU Perlindungan Saksi dan Korban (LPSK) serta Standar Whistleblower KPK RI, setiap masyarakat berhak melaporkan indikasi gratifikasi, suap, dan penggelembungan dana APBN/APBD dengan jaminan kerahasiaan identitas 100%.
+            </p>
+
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <a href="laporan.html" class="nav-cta" style="text-decoration: none;">
+                Formulir Pengaduan Mandiri &rarr;
+              </a>
+              <a href="tel:198" class="nav-cta" style="background: rgba(15,23,42,0.8); border-color: rgba(255,255,255,0.2); text-decoration: none;">
+                Call Center 198 (Bebas Pulsa)
+              </a>
+            </div>
+          </div>
+
+          <!-- Feature Bullets -->
+          <div style="background: rgba(11, 19, 36, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 1.75rem;">
+            <h3 style="font-size: 1.1rem; font-weight: 700; color: #ffffff; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20" style="color: var(--color-emerald);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Standar Bukti Pelaporan Valid
+            </h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.88rem; color: #cbd5e1;">
+              <li>✔ Dokumen Kontrak Tender atau SPK Pengadaan Barang</li>
+              <li>✔ Rekening Koran / Bukti Transfer Aliran Dana Gratifikasi</li>
+              <li>✔ Disposisi Surat Perintah atau Notulensi Rekayasa Lelang</li>
+              <li>✔ Identitas Saksi yang Mengetahui Langsung Perkara</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer -->
@@ -221,39 +324,43 @@
         <div>
           <div class="footer-brand-title">Portal Transparansi Data Korupsi</div>
           <p class="footer-desc">
-            Media keterbukaan data mengenai kerugian keuangan negara akibat korupsi di Indonesia. Didukung oleh mesin animasi GSAP & Canvas API dengan integrasi backend Python.
+            Media intelijen data dan literasi publik independen untuk memantau kerugian keuangan negara akibat korupsi di Indonesia. Berbasis data resmi putusan inkracht Mahkamah Agung RI.
           </p>
         </div>
 
         <div>
-          <div class="footer-col-title">Navigasi Utama</div>
+          <div class="footer-col-title">Navigasi Halaman</div>
           <ul class="footer-links-list">
-            <li><a href="index.html">Beranda Portal</a></li>
-            <li><a href="galeri.html">Galeri Pelaku Korupsi</a></li>
-            <li><a href="analisis.html">Analisis Data Kerugian</a></li>
+            <li><a href="index.html">Beranda Landing Page</a></li>
+            <li><a href="analisis.html">Trading Terminal Analisis</a></li>
+            <li><a href="galeri.html">Katalog Pelaku Korupsi</a></li>
+            <li><a href="laporan.html">Edukasi & Pengaduan WBS</a></li>
           </ul>
         </div>
 
         <div>
-          <div class="footer-col-title">Pengaduan Masyarakat</div>
+          <div class="footer-col-title">Kanal Pengaduan Resmi</div>
           <ul class="footer-links-list">
-            <li><a href="tel:198">Call Center 198 (Bebas Pulsa)</a></li>
+            <li><a href="tel:198">Call Center: 198</a></li>
             <li><a href="mailto:pengaduan@kpk.go.id">pengaduan@kpk.go.id</a></li>
-            <li><a href="https://kpk.go.id" target="_blank" rel="noopener">KPK Republik Indonesia</a></li>
+            <li><a href="https://kpk.go.id" target="_blank" rel="noopener">Website Resmi KPK RI</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom-bar">
-        <div>&copy; 2026 Portal Transparansi Data Korupsi Indonesia.</div>
-        <div style="color: #64748b;">Animasi GSAP 3 &bull; Canvas API 60 FPS &bull; Python Backend</div>
+        <div>&copy; 2026 Portal Transparansi Data Korupsi Indonesia. Lisensi Publik Terbuka.</div>
+        <div style="font-family: var(--font-mono); color: var(--color-cyan);">CYBER SENTINEL v4.2 // 60 FPS GSAP</div>
       </div>
     </div>
   </footer>
 
-  <!-- Animation Engine & Python API Integration Script -->
+  <!-- Scripts: Main Animation Engine, Charts Engine, & Corruptor Gallery Logic -->
+  <script src="charts.js"></script>
+  <script src="galeri.js"></script>
   <script src="main.js"></script>
   <script>
+    // Mobile navigation toggle
     const mobileBtn = document.getElementById('mobile-toggle');
     const navMenu = document.getElementById('nav-links');
     if (mobileBtn && navMenu) {

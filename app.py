@@ -101,3 +101,6 @@ if __name__ == '__main__':
     else:
         with socketserver.TCPServer(("", PORT), StandaloneHandler) as server:
             server.serve_forever()
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
