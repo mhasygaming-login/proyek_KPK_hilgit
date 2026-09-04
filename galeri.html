@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galeri Pelaku Tindak Pidana Korupsi — Direktori publik transparansi nama, jabatan, instansi, dan total kerugian negara kasus korupsi di Indonesia.">
+  <title>Galeri Pelaku Korupsi | Portal Transparansi KPK</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Legal Disclaimer Bar -->
+  <div class="top-disclaimer-bar">
+    <div class="container top-disclaimer-content">
+      <div class="disclaimer-badge">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        </svg>
+        <span><strong>PORTAL INFORMASI PUBLIK:</strong> Data bersumber dari putusan pengadilan berkekuatan hukum tetap (inkracht) & rilis resmi penegak hukum.</span>
+      </div>
+      <div class="disclaimer-links">
+        <a href="https://kpk.go.id" target="_blank" rel="noopener">kpk.go.id</a>
+        <a href="https://putusan3.mahkamahagung.go.id" target="_blank" rel="noopener">Putusan Mahkamah Agung</a>
+        <a href="tel:198">Call Center: <strong>198</strong></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar Responsif -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-emblem">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4zm0 4a3 3 0 013 3c0 1.31-.83 2.42-2 2.83V16a1 1 0 01-2 0v-4.17c-1.17-.41-2-1.52-2-2.83a3 3 0 013-3z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">PORTAL TRANSPARANSI <span>KPK</span></div>
+          <div class="brand-sub">DATA KORUPSI INDONESIA</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">Beranda</a></li>
+          <li><a href="galeri.html" class="nav-link active">Galeri Pelaku</a></li>
+          <li><a href="analisis.html" class="nav-link">Analisis Data</a></li>
+        </ul>
+      </nav>
+
+      <a href="tel:198" class="nav-cta">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+        </svg>
+        Lapor Tipikor (198)
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Page Header -->
+    <section class="page-header">
+      <span class="badge-tag">Direktori Publik Terbuka</span>
+      <h1 class="page-title">Galeri Terpidana & Tersangka Korupsi</h1>
+      <div class="red-divider"></div>
+      <p class="page-desc">
+        Pencarian dan pemantauan profil individu yang terbukti secara sah melakukan tindak pidana korupsi yang merugikan keuangan negara. Data diperbarui berdasarkan amar putusan berkekuatan hukum tetap.
+      </p>
+    </section>
+
+    <!-- Controls: Live Search & Dropdown Sorting -->
+    <section class="filter-card">
+      <div class="controls-row">
+        <!-- Live Search Input -->
+        <div class="search-field">
+          <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Cari nama, alias, atau jabatan pelaku korupsi..." 
+            autocomplete="off"
+          />
+        </div>
+
+        <!-- Sorting Dropdown -->
+        <div>
+          <select id="sort-select" class="sort-select" aria-label="Urutkan Data">
+            <option value="nominal-desc">Urutkan: Nominal Terbesar ke Terkecil</option>
+            <option value="nominal-asc">Urutkan: Nominal Terkecil ke Terbesar</option>
+            <option value="tahun-desc">Urutkan: Tahun Kasus Terbaru</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Instansi Filter Pills -->
+      <div class="filter-pills-row">
+        <span class="pills-label">Sektor Instansi:</span>
+        <button class="pill-button instansi-filter-btn active" data-instansi="all">Semua Sektor</button>
+        <button class="pill-button instansi-filter-btn" data-instansi="Swasta">Swasta</button>
+        <button class="pill-button instansi-filter-btn" data-instansi="BUMN">BUMN</button>
+        <button class="pill-button instansi-filter-btn" data-instansi="Kementerian">Kementerian</button>
+        <button class="pill-button instansi-filter-btn" data-instansi="Pemda">Pemerintah Daerah</button>
+      </div>
+    </section>
+
+    <!-- Result Count Display -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.5rem;">
+      <div id="result-count" style="font-size: 0.9rem; font-weight: 700; color: #0f172a;">
+        Memuat data pelaku korupsi...
+      </div>
+      <div style="font-size: 0.78rem; color: #64748b;">
+        Sumber: Mahkamah Agung RI & KPK
+      </div>
+    </div>
+
+    <!-- Cards Grid (Dynamically Populated by galeri.js) -->
+    <section class="cards-grid" id="cards-grid-container">
+      <!-- Injected via galeri.js -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="portal-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <div class="footer-brand-title">Portal Transparansi Data Korupsi</div>
+          <p class="footer-desc">
+            Website independen transparansi publik mengenai kasus korupsi dan kerugian keuangan negara di Indonesia. Bertujuan untuk edukasi masyarakat dan integritas penyelenggaraan negara.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigasi Utama</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Beranda Portal</a></li>
+            <li><a href="galeri.html">Galeri Pelaku Korupsi</a></li>
+            <li><a href="analisis.html">Analisis Data Kerugian</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Saluran Resmi KPK</div>
+          <ul class="footer-links-list">
+            <li><a href="tel:198">Call Center: 198</a></li>
+            <li><a href="mailto:pengaduan@kpk.go.id">pengaduan@kpk.go.id</a></li>
+            <li><a href="https://kpk.go.id" target="_blank" rel="noopener">Website Resmi KPK</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 Portal Transparansi Data Korupsi Indonesia.</div>
+        <div style="color: #64748b;">Merah KPK (#dc2626) &bull; Dark Slate (#0f172a)</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="galeri.js"></script>
+  <script>
+    const mobileBtn = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-links');
+    if (mobileBtn && navMenu) {
+      mobileBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+      });
+    }
+  </script>
+</body>
+</html>

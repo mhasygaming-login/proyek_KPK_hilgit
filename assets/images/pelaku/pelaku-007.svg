@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad_SY" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="24" fill="url(#grad_SY)"/>
+  <circle cx="120" cy="95" r="45" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+  <path d="M50 200 C 50 150, 190 150, 190 200 Z" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+  <text x="120" y="108" text-anchor="middle" fill="#ffffff" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="36" font-weight="800" letter-spacing="2">SY</text>
+  <rect x="30" y="196" width="180" height="28" rx="14" fill="rgba(15,23,42,0.85)" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="120" y="215" text-anchor="middle" fill="#f8fafc" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="11" font-weight="700">Syahrul Y. Limpo</text>
+</svg>

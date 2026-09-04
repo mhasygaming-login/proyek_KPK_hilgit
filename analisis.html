@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard Analisis Data Kerugian Negara — Visualisasi grafik interaktif Chart.js 10 kasus terbesar dan persentase korupsi per sektor.">
+  <title>Dashboard Analisis Data Kerugian Negara | Portal Transparansi KPK</title>
+
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Legal Disclaimer Bar -->
+  <div class="top-disclaimer-bar">
+    <div class="container top-disclaimer-content">
+      <div class="disclaimer-badge">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        </svg>
+        <span><strong>PORTAL ANALITIK RESMI:</strong> Seluruh grafik statistik diolah secara obyektif dari putusan peradilan inkracht Mahkamah Agung RI.</span>
+      </div>
+      <div class="disclaimer-links">
+        <a href="https://kpk.go.id" target="_blank" rel="noopener">kpk.go.id</a>
+        <a href="https://putusan3.mahkamahagung.go.id" target="_blank" rel="noopener">Putusan Mahkamah Agung</a>
+        <a href="tel:198">Call Center: <strong>198</strong></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar Responsif -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-emblem">
+          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L3 6v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V6l-9-4zm0 4a3 3 0 013 3c0 1.31-.83 2.42-2 2.83V16a1 1 0 01-2 0v-4.17c-1.17-.41-2-1.52-2-2.83a3 3 0 013-3z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">PORTAL TRANSPARANSI <span>KPK</span></div>
+          <div class="brand-sub">DASHBOARD ANALISIS STATISTIK</div>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="nav-link">Beranda</a></li>
+          <li><a href="galeri.html" class="nav-link">Galeri Pelaku</a></li>
+          <li><a href="analisis.html" class="nav-link active">Analisis Data</a></li>
+        </ul>
+      </nav>
+
+      <a href="tel:198" class="nav-cta">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+        </svg>
+        Lapor Tipikor (198)
+      </a>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Header Section -->
+    <section class="page-header">
+      <span class="badge-tag">Visualisasi Data Interaktif</span>
+      <h1 class="page-title">Dashboard Analisis Kerugian Negara</h1>
+      <div class="red-divider"></div>
+      <p class="page-desc">
+        Visualisasi grafis mengenai sebaran nominal kerugian keuangan dan perekonomian negara berdasarkan 10 kasus korupsi terbesar serta persentase proporsi per sektor (BUMN, Pemda, Kementerian, Swasta).
+      </p>
+    </section>
+
+    <!-- Filter Pilihan Tahun -->
+    <section class="filter-card">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #dc2626;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <span style="font-weight: 700; color: #0f172a; font-size: 0.92rem;">Filter Tahun Penindakan / Putusan:</span>
+        </div>
+
+        <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+          <button class="pill-button year-btn active" data-year="all">Semua Tahun</button>
+          <button class="pill-button year-btn" data-year="2024">Tahun 2024</button>
+          <button class="pill-button year-btn" data-year="2023">Tahun 2023</button>
+          <button class="pill-button year-btn" data-year="2022">Tahun 2022</button>
+          <button class="pill-button year-btn" data-year="2017-2020">2017 — 2020</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary KPI Counters Based on Filter -->
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+      <div class="kpi-card">
+        <span class="kpi-label">Akumulasi Nilai Terfilter</span>
+        <div class="kpi-number" id="stat-total-kerugian">Rp 0 T</div>
+        <div class="kpi-progress-bar">
+          <div class="kpi-progress-fill" style="width: 100%;"></div>
+        </div>
+      </div>
+
+      <div class="kpi-card slate">
+        <span class="kpi-label">Jumlah Kasus Dihitung</span>
+        <div class="kpi-number" id="stat-total-kasus">0 Kasus</div>
+        <div class="kpi-progress-bar">
+          <div class="kpi-progress-fill" style="width: 85%;"></div>
+        </div>
+      </div>
+
+      <div class="kpi-card gold">
+        <span class="kpi-label">Status Verifikasi</span>
+        <div class="kpi-number" style="font-size: 1.6rem; color: #b45309;">100% Inkracht</div>
+        <div class="kpi-progress-bar">
+          <div class="kpi-progress-fill" style="width: 100%;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 Interactive Charts Grid -->
+    <section class="charts-grid">
+      
+      <!-- Chart 1: Bar Chart Top 10 Kasus Korupsi -->
+      <article class="chart-box">
+        <div class="chart-header">
+          <div>
+            <h2 class="chart-title">10 Kasus Korupsi dengan Nominal Terbesar</h2>
+            <p class="chart-subtitle">Peringkat perkara berdasarkan total kerugian negara yang terbukti di pengadilan</p>
+          </div>
+          <span class="badge-tag" style="margin: 0;">Bar Chart</span>
+        </div>
+        <div class="chart-container-wrap">
+          <canvas id="barChartNominal"></canvas>
+        </div>
+      </article>
+
+      <!-- Chart 2: Pie/Doughnut Chart Persentase per Sektor -->
+      <article class="chart-box dark-trim">
+        <div class="chart-header">
+          <div>
+            <h2 class="chart-title">Persentase Korupsi Berdasarkan Sektor</h2>
+            <p class="chart-subtitle">Proporsi kerugian pada BUMN, Pemda, Kementerian, dan Swasta</p>
+          </div>
+          <span class="badge-tag" style="margin: 0; background-color: #f1f5f9; color: #0f172a; border-color: #cbd5e1;">Doughnut Chart</span>
+        </div>
+        <div class="chart-container-wrap">
+          <canvas id="pieChartSektor"></canvas>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="portal-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div>
+          <div class="footer-brand-title">Portal Transparansi Data Korupsi</div>
+          <p class="footer-desc">
+            Sistem analisis data publik mengenai penindakan tindak pidana korupsi. Data disajikan untuk penelitian, jurnalisme data, dan partisipasi publik anti-korupsi.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigasi Utama</div>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Beranda Portal</a></li>
+            <li><a href="galeri.html">Galeri Pelaku Korupsi</a></li>
+            <li><a href="analisis.html">Analisis Data Kerugian</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Kanal Pengaduan</div>
+          <ul class="footer-links-list">
+            <li><a href="tel:198">Call Center 198</a></li>
+            <li><a href="mailto:pengaduan@kpk.go.id">pengaduan@kpk.go.id</a></li>
+            <li><a href="https://kpk.go.id" target="_blank" rel="noopener">Situs Resmi KPK RI</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 Portal Transparansi Data Korupsi Indonesia.</div>
+        <div style="color: #64748b;">Merah-Hitam-Putih Resmi Pemerintah</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="charts.js"></script>
+  <script>
+    const mobileBtn = document.getElementById('mobile-toggle');
+    const navMenu = document.getElementById('nav-links');
+    if (mobileBtn && navMenu) {
+      mobileBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+      });
+    }
+  </script>
+</body>
+</html>
