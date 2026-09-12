@@ -48,6 +48,13 @@ if FLASK_AVAILABLE:
     def route_analisis():
         return send_file(os.path.join(BASE_DIR, 'analisis.html'))
 
+    @app.route('/laporan.html')
+    @app.route('/laporan')
+    @app.route('/edukasi.html')
+    @app.route('/edukasi')
+    def route_laporan():
+        return send_file(os.path.join(BASE_DIR, 'laporan.html'))
+
     @app.route('/api/metrics')
     def api_metrics():
         """Endpoint REST API yang mengembalikan angka statistik untuk animasi GSAP."""
@@ -83,6 +90,12 @@ else:
                 data["timestamp"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 self.wfile.write(json.dumps(data).encode('utf-8'))
                 return
+            elif self.path in ['/galeri']:
+                self.path = '/galeri.html'
+            elif self.path in ['/analisis']:
+                self.path = '/analisis.html'
+            elif self.path in ['/laporan', '/edukasi', '/edukasi.html']:
+                self.path = '/laporan.html'
             return super().do_GET()
 
 if __name__ == '__main__':
@@ -93,6 +106,7 @@ if __name__ == '__main__':
     print(f"  - Beranda:       http://127.0.0.1:{PORT}/")
     print(f"  - Galeri Pelaku: http://127.0.0.1:{PORT}/galeri.html")
     print(f"  - Analisis Data: http://127.0.0.1:{PORT}/analisis.html")
+    print(f"  - Edukasi & WBS: http://127.0.0.1:{PORT}/laporan.html")
     print(f"  - Endpoint REST: http://127.0.0.1:{PORT}/api/metrics")
     print(f"================================================================")
 
@@ -101,6 +115,3 @@ if __name__ == '__main__':
     else:
         with socketserver.TCPServer(("", PORT), StandaloneHandler) as server:
             server.serve_forever()
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
